@@ -104,3 +104,22 @@ function save_test_report(reports) {
     });
     localStorage.setItem("test_report",JSON.stringify(test_report));
 }
+
+function select_question(el){
+    $(el).parents('.option').find(".radio label").attr("class","label-gray label-unselect");
+    $(el).parent().attr("class","label-select label-primary")
+}
+
+function judge_have_answer(current_exam_question_id){
+    var my_answer = JSON.parse(localStorage.getItem('my_answer')) || [];
+    $(my_answer).each(function(index, el){
+        if(el["question_id"]==current_exam_question_id){
+            $("input[name=radio").each(function(index,radio){
+                if($(radio).val()==el["select_id"]){
+                    $(radio).parent().attr("class","label-select label-primary");
+                    $(radio).attr("checked",true)
+                }
+            })
+        }
+    });
+}

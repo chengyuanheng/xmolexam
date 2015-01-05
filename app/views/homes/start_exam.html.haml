@@ -21,8 +21,8 @@
   .option
     -@current_exam_question.sat_answer_banks.each do |answer|
       .radio
-        %label
-          %input(type="radio" name="radio" value="#{answer.id}")= answer.tag+". "+answer.answer
+        %label.label-gray.label-unselect
+          %input(type="radio" name="radio" value="#{answer.id}" onclick="select_question(this)")= answer.tag+". "+answer.answer
   .switch
     =form_tag('/homes/start_exam',:method=>'post',:class=>"form-horizontal", :id=>"select_exam_question") do
       #hide_date.hide
@@ -40,6 +40,7 @@
 
 :javascript
   $(function(){
+      judge_have_answer("#{@current_exam_question.id}")
       var exam_time = "#{@time.to_i}"
       $("#exam_time").text(format_exam_time(exam_time))
       $("#hide_exam_time").val(exam_time)

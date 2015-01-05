@@ -16,4 +16,5 @@ class User < ActiveRecord::Base
   def self.update params
     find(params[:user_id]).update_attributes(:name=>params[:name],:email=>params[:email],:password=>params[:password])
   end
+
 end

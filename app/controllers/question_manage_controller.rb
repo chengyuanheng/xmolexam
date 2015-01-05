@@ -8,16 +8,19 @@ class QuestionManageController < ApplicationController
 
   def add_user
     User.add params
+    flash[:tip]="用户添加成功"
     redirect_to :action=>"user_manage"
   end
 
   def delete_user
     User.delete params
+    flash[:tip]="用户删除成功"
     redirect_to :action=>"user_manage"
   end
 
   def update_user
     User.update params
+    flash[:tip]="用户更新成功"
     redirect_to :action=>"user_manage"
   end
 
@@ -31,19 +34,19 @@ class QuestionManageController < ApplicationController
 
   def add_question
     SatQuestionBank.add_question params
-
+    flash[:tip]="考题添加成功"
     redirect_to :action=>"question_manage"
   end
 
   def update_question
     SatQuestionBank.update_question params
-
+    flash[:tip]="考题更新成功"
     redirect_to :action=>"question_manage"
   end
 
   def delete_question
     SatQuestionBank.delete_question params
-
+    flash[:tip]="考题删除成功"
     redirect_to :action=>"question_manage"
   end
 

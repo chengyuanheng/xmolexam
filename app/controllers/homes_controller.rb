@@ -1,3 +1,4 @@
+# encoding: utf-8
 class HomesController < ApplicationController
   before_filter :user_authenticate
 
@@ -12,7 +13,10 @@ class HomesController < ApplicationController
   end
 
   def start_exam
-    return redirect_to :action=>"index" if params[:exam_time].blank? || params[:date].blank? || params[:subject].blank?
+    if params[:exam_time].blank? || params[:date].blank? || params[:subject].blank?
+      flash[:tip] = "请正确设置考期，考试项目以及考试时间"
+      return  redirect_to :action=>"index"
+    end
     @time=params[:exam_time]
     @date_ids=params[:date]
     @subject_ids=params[:subject]
@@ -21,7 +25,10 @@ class HomesController < ApplicationController
     is_prev=params[:prev]
     sql="select count(*) from sat_question_banks where exam_date_id in (#{@date_ids.join(',')}) and subject_id in (#{@subject_ids.join(',')})"
     @exam_questions_count = SatQuestionBank.count_by_sql(sql)
-    return redirect_to :action=>"index" if @exam_questions_count==0
+    if @exam_questions_count==0
+      flash[:tip] = "没有选中的考题，请重新选择考题"
+      return redirect_to :action=>"index"
+    end
     sql = "select * from sat_question_banks where exam_date_id in (#{@date_ids.join(',')}) and subject_id in (#{@subject_ids.join(',')})"
     sql += "and id > #{current_exam_question_id} order by id asc " if current_exam_question_id.present? && is_next=="true"
     sql += "and id < #{current_exam_question_id} order by id desc " if current_exam_question_id.present? && is_prev=="true"
