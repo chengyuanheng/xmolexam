@@ -1,0 +1,15 @@
+.login-form
+  .login-tip  欢迎登陆小马在线答题系统后台
+  =form_tag('/sessions/create',:method=>'post',:class=>"form-horizontal") do
+    .form-group
+      %label.col-sm-2.control-label(for="inputEmal3") 邮箱
+      .col-sm-10
+        %input.form-control(type="email" name="email" placeholder="Email")
+    .form-group
+      %label.col-sm-2.control-label(for="inputPassword3") 密码
+      .col-sm-10
+        %input.form-control(type="password" name="password" placeholder="Password")
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        %button.btn.btn-primary(type="submit") 登录后台
+        %a.btn.btn-default(href="/") 访问前台

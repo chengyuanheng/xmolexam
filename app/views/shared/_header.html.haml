@@ -1,0 +1,32 @@
+%nav.navbar.navbar-default(role="navigation")
+  .navbar-inner
+    .container-fluid
+      %a.btn.btn-navbar(data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse")
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a(href="/")
+        .logo
+      %ul.nav.navbar-nav
+        -if current_user.present?
+          %li#_question_manage_user_manage
+            %a(href="/question_manage/user_manage") 用户管理
+          %li#_question_manage_question_manage
+            %a(href="/question_manage/question_manage") 题库管理
+        -if current_user.blank?
+          %li#_
+            %a(href="/") SAT在线答题
+          %li#_homes_test_report
+            %a(href="/homes/test_report") 测试报告
+          %li
+            %a(href="/login") 登录后台
+      -if current_user.present?
+        %ul.nav.navbar-nav.navbar-right.padding
+          %li.dropdown
+            %a.dropdown-toggle(data-toggle="dropdown" href="#")
+              %span
+                你好，#{current_user.name}
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a(href="/logout") 退出

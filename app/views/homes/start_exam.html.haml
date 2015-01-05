@@ -1,0 +1,70 @@
+.container
+  .row
+    .col-lg-3
+      %blockquote
+        %h3.timer
+          剩余时间
+          %strong#exam_time
+          %input.hide#hide_exam_time
+
+    .col-lg-3.pull-right
+      %blockquote
+        %h3
+          Question
+          %strong#finish_question= @current_exam_question_index
+          of
+          %strong= @exam_questions_count
+
+  %hr
+  .title
+    %p= @current_exam_question.question
+  .option
+    -@current_exam_question.sat_answer_banks.each do |answer|
+      .radio
+        %label
+          %input(type="radio" name="radio" value="#{answer.id}")= answer.tag+". "+answer.answer
+  .switch
+    =form_tag('/homes/start_exam',:method=>'post',:class=>"form-horizontal", :id=>"select_exam_question") do
+      #hide_date.hide
+      #hide_subject.hide
+      %input.hide(id="current_exam_time" name="exam_time")
+      %input.hide(name="question_id" value="#{@current_exam_question.id}")
+      %input.hide(name="next" id="next")
+      %input.hide(name="prev" id="prev")
+      -unless @is_first_question
+        %a.btn.btn-primary.btn-sm(href="#" onclick="fetch_question('prev')") 上一题
+      -unless @is_last_question
+        %a.btn.btn-primary.btn-sm(href="#" onclick="fetch_question('next')" ) 下一题
+      -if @is_last_question
+        %a.btn.btn-success.btn-sm(href="#" onclick="submit_exam_question()" ) 提&nbsp&nbsp&nbsp交
+
+:javascript
+  $(function(){
+      var exam_time = "#{@time.to_i}"
+      $("#exam_time").text(format_exam_time(exam_time))
+      $("#hide_exam_time").val(exam_time)
+      var second = 0;
+      setInterval(function(){update_exam_time(exam_time, second); second += 1},1000);
+  });
+
+  function fetch_question(prev_next){
+    $("#prev").val(" ")
+    $("#next").val(" ")
+    $("#"+prev_next).val(true)
+    $("#current_exam_time").val($("#hide_exam_time").val())
+    var date_ids = #{@date_ids}
+    var subject_ids = #{@subject_ids}
+    $(date_ids).each(function(index, el){
+      $("#hide_date").append("<input name='date[]' value="+el+" />")
+    })
+    $(subject_ids).each(function(index, el){
+      $("#hide_subject").append("<input name='subject[]' value="+el+" />")
+    })
+    save_select_answer("#{@current_exam_question.id}")
+    $("#select_exam_question").submit();
+  }
+
+  function submit_exam_question(){
+    save_select_answer("#{@current_exam_question.id}")
+    post_answer_to_back()
+  }

@@ -1,0 +1,37 @@
+.col-md-12.filter
+  .panel.panel-default
+    .panel-heading
+      =form_tag('/homes/start_exam',:method=>'post',:class=>"form-horizontal") do
+        -@exam_dates.each do |year, dates|
+          %dl.dl-horizontal
+            %dt
+              %span=year.to_s+"年"
+            %dd
+              %label.label-unselect.label-gray
+                %input(type="checkbox" onclick="select_all(this)")
+                %span 全选
+              -dates.each do |date|
+                %label.label-unselect.label-gray
+                  %input(type="checkbox" onclick="select_current_checkbox(this)" name="date[]" value="#{date.id}")
+                  %span= date.month.to_s+"月"
+        %dl.dl-horizontal
+          %dt
+            %span 科目
+          %dd
+            %label.label-unselect.label-gray
+              %input(type="checkbox" onclick="select_all(this)")
+              %span 全选
+            -@sat_subjects.each do |subject|
+              %label.label-unselect.label-gray
+                %input(type="checkbox" onclick="select_current_checkbox(this)" name="subject[]" value="#{subject.id}")
+                %span= LibSubject.fetch_name(subject.id)
+        %dl.dl-horizontal
+          %dt
+            %span 考试时间
+          %dd
+            %input.exam_time_input(type="number" name="exam_time")
+            %span 秒
+        %dl.dl-horizontal
+          %dt
+          %dd
+            %button.start_exam.btn.btn-success.btn-sm(type="submit" onclick="clear_my_answer_local_storage()" ) 开始考试

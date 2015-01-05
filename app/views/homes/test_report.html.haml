@@ -1,0 +1,27 @@
+.report
+  .report_title
+    %table.table
+      %thead
+        %tr
+          %th.col-lg-1 题号
+          %th.col-lg-4 题目
+          %th.col-lg-1 您的答案
+          %th.col-lg-1 正确答案
+          %th.col-lg-1
+
+  .report_content.pre-scrollable_style
+    %table.table.table-hover
+      %tbody#test_report
+
+:javascript
+   $(function(){
+      var test_report = JSON.parse(localStorage.getItem('test_report')) || [];
+      $("#test_report").empty();
+      $(test_report).each(function(index, el){
+          $("#test_report").append("<tr><td class='col-lg-1'>"+el["question_id"]+
+                                   "</td><td class='col-lg-4'>"+el["question"]+
+                                   "</td><td class='col-lg-1'>"+el["my_answer"]+
+                                   "</td><td class='col-lg-1'>"+el["right_answer"]+
+                                   "</td><td class='col-lg-1'><icon class='"+( el["my_answer"]==el["right_answer"] ? 'right_icon' : 'wrong_icon')+"'></td></tr>")
+      })
+    });

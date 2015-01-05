@@ -1,0 +1,174 @@
+.container {
+    width: 85%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid lightgray;
+    padding: 10px;
+}
+
+.padding{
+    margin: 0 80px ;
+}
+
+.logo{
+    background: url("../images/logo.png") no-repeat left center;
+    width: 186px;
+    height: 49px;
+    border:none;
+    text-indent: -9999px;
+    padding: 0;
+    float: left;
+    margin-right: 50px;
+    margin-left: 80px;
+    display: inline-block;
+}
+
+ul{
+    list-style-type:none
+}
+
+a, a:hover{
+    text-decoration:none
+}
+
+
+.center{
+    text-align: center;
+}
+
+.pagination{
+    float: right;
+}
+
+.login-form {
+    width: 60%;
+    margin: 150px auto;
+    background-color: #F5F5F5;
+    border: 1px;
+    border-radius:25px;
+    -webkit-box-shadow: #666 0px 0px 10px;
+    -moz-box-shadow: #666 0px 0px 10px;
+    box-shadow: #666 0px 0px 10px;
+}
+
+.login-form form{
+    width: 91%;
+    padding-bottom: 20px;
+}
+
+.login-tip{
+    text-align: center;
+    margin: 50px;
+    padding: 20px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 24px;
+    font-family: "Microsoft Yahei"
+}
+
+.pre-scrollable_style {
+    max-height: 666px;
+    overflow-y: auto;
+}
+
+.report{
+    padding: 28px;
+    margin: 10px 10px;
+    font-size: 18px;
+    background-color: #f5f5f5;
+}
+
+.report_content tr td{
+    border: 1px dashed #dddddd !important;
+    padding: 9px !important;
+}
+
+.filter dl{
+    margin-top: 20px;
+    padding-top: 9px;
+}
+
+.filter dd label{
+    padding-top: 13px;
+    padding-left: 10px;
+    margin-left: 40px;
+}
+.filter dd label span{
+    vertical-align: 4px;
+}
+
+.filter dd .exam_time_input{
+    margin-left: 40px;
+}
+
+.filter dd .start_exam{
+    margin-left: 40px;
+}
+
+.label-select{
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.8em;
+}
+
+.label-unselect{
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.8em;
+}
+
+.label-gray{
+    background-color: #E6E6E6;
+}
+
+.title{
+    font-size: 18px;
+}
+
+.option .radio{
+    margin: 30px;
+}
+
+.option label{
+    font-size: 16px;
+}
+
+.switch{
+    margin: 30px;
+}
+
+.switch a{
+    margin-right: 28px;
+}
+
+.right_icon{
+    background: url("../images/right.png") no-repeat left center;
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+.wrong_icon{
+    background: url("../images/wrong.png") no-repeat left center;
+    width: 30px;
+    height: 30px;
+    float: left;
+}

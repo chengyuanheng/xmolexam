@@ -1,0 +1,24 @@
+#add_user.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      =form_tag('/question_manage/add_user',:method=>'post') do
+        .modal-header
+          %button(type="button" class="close" data-dismiss="modal" aria-hidden="true") &times
+          %h4(class="modal-title" id="myModalLabel") 添加
+        .modal-body
+          %table.table.table-bordered.table-striped.table-condensed
+            %thead
+              %tr
+                %th 用户名
+                %th 邮箱
+                %th 密码
+              %tr
+                %td
+                  %input(type="text" name="name")
+                %td
+                  %input(type="email" name="email")
+                %td
+                  %input(type="password" name="password")
+        .modal-footer
+          %button.btn.btn-primary.btn-lg(type="submit") 保存
+          %a.btn.btn-default.btn-lg(data-dismiss="modal") 取消
