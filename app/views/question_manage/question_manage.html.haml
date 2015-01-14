@@ -58,7 +58,7 @@
                         %input.form-control(name="answer_A" value="#{question.sat_answer_banks.find_by(:tag=>"A").answer}")
                       .col-sm-3
                         .radio
-                          %label(class="#{question.sat_answer_banks.find_by(:tag=>"A").is_right_answer ? 'label-select label-primary' : 'label-gray.label-unselect'}")
+                          %label(class="#{question.sat_answer_banks.find_by(:tag=>"A").is_right_answer ? 'label-select label-primary' : 'label-gray label-unselect'}")
                             -if question.sat_answer_banks.find_by(:tag=>"A").is_right_answer
                               %input(type="radio" name="right_answer" onclick="select_radio(this)" value="A" checked)
                             -else
@@ -70,7 +70,7 @@
                         %input.form-control(name="answer_B"  value="#{question.sat_answer_banks.find_by(:tag=>"B").answer}")
                       .col-sm-3
                         .radio
-                          %label(class="#{question.sat_answer_banks.find_by(:tag=>"B").is_right_answer ? 'label-select label-primary' : 'label-gray.label-unselect'}")
+                          %label(class="#{question.sat_answer_banks.find_by(:tag=>"B").is_right_answer ? 'label-select label-primary' : 'label-gray label-unselect'}")
                             -if question.sat_answer_banks.find_by(:tag=>"B").is_right_answer
                               %input(type="radio" name="right_answer" onclick="select_radio(this)" value="B" checked)
                             -else
@@ -82,7 +82,7 @@
                         %input.form-control(name="answer_C"  value="#{question.sat_answer_banks.find_by(:tag=>"C").answer}")
                       .col-sm-3
                         .radio
-                          %label(class="#{question.sat_answer_banks.find_by(:tag=>"C").is_right_answer ? 'label-select label-primary' : 'label-gray.label-unselect'}")
+                          %label(class="#{question.sat_answer_banks.find_by(:tag=>"C").is_right_answer ? 'label-select label-primary' : 'label-gray label-unselect'}")
                             -if question.sat_answer_banks.find_by(:tag=>"C").is_right_answer
                               %input(type="radio" name="right_answer" onclick="select_radio(this)" value="C" checked)
                             -else
@@ -94,7 +94,7 @@
                         %input.form-control(name="answer_D"  value="#{question.sat_answer_banks.find_by(:tag=>"D").answer}")
                       .col-sm-3
                         .radio
-                          %label(class="#{question.sat_answer_banks.find_by(:tag=>"D").is_right_answer ? 'label-select label-primary' : 'label-gray.label-unselect'}")
+                          %label(class="#{question.sat_answer_banks.find_by(:tag=>"D").is_right_answer ? 'label-select label-primary' : 'label-gray label-unselect'}")
                             -if question.sat_answer_banks.find_by(:tag=>"D").is_right_answer
                               %input(type="radio" name="right_answer" onclick="select_radio(this)" value="D" checked)
                             -else
@@ -106,7 +106,7 @@
                         %input.form-control(name="answer_E"  value="#{question.sat_answer_banks.find_by(:tag=>"E").answer}")
                       .col-sm-3
                         .radio
-                          %label(class="#{question.sat_answer_banks.find_by(:tag=>"E").is_right_answer ? 'label-select label-primary' : 'label-gray.label-unselect'}")
+                          %label(class="#{question.sat_answer_banks.find_by(:tag=>"E").is_right_answer ? 'label-select label-primary' : 'label-gray label-unselect'}")
                             -if question.sat_answer_banks.find_by(:tag=>"E").is_right_answer
                               %input(type="radio" name="right_answer" onclick="select_radio(this)" value="E" checked)
                             -else
