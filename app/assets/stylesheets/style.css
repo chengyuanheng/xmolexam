@@ -139,6 +139,14 @@ a, a:hover{
     background-color: #E6E6E6;
 }
 
+.label-error{
+    background-color: #ff0000;
+}
+
+.label-right{
+    background-color: #74e016;
+}
+
 .title{
     font-size: 18px;
 }
@@ -171,4 +179,19 @@ a, a:hover{
     width: 30px;
     height: 30px;
     float: left;
+}
+
+.dc {
+    float: right;
+    margin: 15px 15px;
+}
+
+.dc dt{
+    text-align: center;
+    font-size: 16px;
+}
+
+.dc dd{
+    text-align: center;
+    font-size: 16px;
 }

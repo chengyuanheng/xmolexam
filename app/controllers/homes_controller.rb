@@ -17,7 +17,18 @@ class HomesController < ApplicationController
       flash[:tip] = "请正确设置考期，考试项目以及考试时间"
       return  redirect_to :action=>"index"
     end
-    @time=params[:exam_time]
+    if session[:start_time].present? && session[:examer_id] != params[:examer_id].to_i
+      session[:start_time] = nil
+    end
+    if session[:start_time].nil? && session[:examer_id] != params[:examer_id].to_i
+      session[:start_time] = Time.now.to_datetime.to_i
+      session[:examer_id] = params[:examer_id].to_i
+    end
+    @examer_id = params[:examer_id]
+    @exam_time = params[:exam_time].to_i
+    rest_time=params[:exam_time].to_i - (Time.now.to_datetime.to_i - session[:start_time])
+    @current_time = rest_time <= 0 ? 0 : rest_time
+    @start_time = session[:start_time]
     @date_ids=params[:date]
     @subject_ids=params[:subject]
     current_exam_question_id= params[:question_id]
@@ -49,16 +60,22 @@ class HomesController < ApplicationController
     my_answer = params[:my_answer].values
     test_report = []
     my_answer.each do |answer|
-      question = SatQuestionBank.find(answer["question_id"])
-      answer = SatAnswerBank.find(answer["select_id"])
+      question = SatQuestionBank.find_by_id(answer["question_id"])
+      answer = SatAnswerBank.find_by_id(answer["select_id"])
       test_report << {
         :question_id=>question.id,
         :question=>question.question,
-        :my_answer=>answer.tag,
+        :my_answer=>answer.present? ? answer.tag : "未选择",
         :right_answer=>question.sat_answer_banks.find_by_is_right_answer(true).tag
       }
     end
-    render :json=>test_report
+    use_time = Time.now.to_datetime.to_i - params[:start_time].to_i
+
+    render :json=>{:report=>test_report, :use_time=>use_time}
   end
 
+  def question_detail
+    @question = SatQuestionBank.find_by_id(params[:question_id])
+    @my_answer = params[:my_answer]
+  end
 end

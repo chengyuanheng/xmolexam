@@ -1,6 +1,8 @@
 =render "shared/tip"
 
-%a.btn.btn-primary(type="button" data-toggle="modal" data-target="#add_questions") 添加考题
+%a.btn.btn-primary(type="button" data-toggle="modal" data-target="#add_questions")
+  %i.glyphicon.glyphicon-plus
+  添加考题
 = render 'add_question'
 %hr
 %table.table.table-hover
@@ -19,8 +21,12 @@
         %td= LibSubject.fetch_name(question.subject_id)
         %td= question.section
         %td
-          %a.btn.btn-primary(href="#" data-target="#edit_questions#{question.id}" data-toggle="modal") 编辑
-          %a.btn.btn-danger(href="#" data-target="#delete_questions#{question.id}" data-toggle="modal") 删除
+          %a.btn.btn-primary.btn-sm(href="#" data-target="#edit_questions#{question.id}" data-toggle="modal")
+            %i.glyphicon.glyphicon-pencil
+            编辑
+          %a.btn.btn-danger.btn-sm(href="#" data-target="#delete_questions#{question.id}" data-toggle="modal")
+            %i.glyphicon.glyphicon-trash
+            删除
 
           .modal.fade(id="edit_questions#{question.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
             .modal-dialog
@@ -107,8 +113,12 @@
                               %input(type="radio" name="right_answer" onclick="select_radio(this)" value="E")
                             %span 设为正确答案
                   .modal-footer
-                    %button.btn.btn-primary.btn-lg(type="submit") 保存
-                    %a.btn.btn-default.btn-lg(data-dismiss="modal") 取消
+                    %button.btn.btn-primary.btn-lg(type="submit")
+                      %i.glyphicon.glyphicon-floppy-open
+                      保存
+                    %a.btn.btn-default.btn-lg(data-dismiss="modal")
+                      %i.glyphicon.glyphicon-hand-left
+                      取消
 
           .modal.fade(id="delete_questions#{question.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
             .modal-dialog
@@ -120,8 +130,12 @@
                   .modal-body
                     %h3.center 确定要删除该考题吗？
                   .modal-footer
-                    %button.btn.btn-danger.btn-lg(type="submit") 确定
-                    %a.btn.btn-default.btn-lg(data-dismiss="modal") 取消
+                    %button.btn.btn-danger.btn-lg(type="submit")
+                      %i.glyphicon.glyphicon-trash
+                      确定
+                    %a.btn.btn-default.btn-lg(data-dismiss="modal")
+                      %i.glyphicon.glyphicon-hand-left
+                      取消
 
 =will_paginate @questions , :previous_label => '上一页' , :next_label => '下一页', renderer: BootstrapPagination::Rails
 

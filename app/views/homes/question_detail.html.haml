@@ -1,0 +1,34 @@
+.container
+  .row
+    .col-lg-5
+      %blockquote
+        %h3 您的答案
+      .title
+        %p= @question.question
+      .option
+        -@question.sat_answer_banks.each do |answer|
+          .radio
+            %label(class=" #{answer.tag == @my_answer ? ( answer.is_right_answer ? 'label-select label-right' : 'label-select label-error') : 'label-gray label-unselect'}")
+              -if answer.tag == @my_answer
+                %input(type="radio" name="my_radio" disabled="true" checked)= answer.tag+". "+answer.answer
+              -else
+                %input(type="radio" name="my_radio" disabled="true")= answer.tag+". "+answer.answer
+    .col-lg-5.pull-right
+      %blockquote
+        %h3 正确答案
+      .title
+        %p= @question.question
+      .option
+        -@question.sat_answer_banks.each do |answer|
+          .radio
+            %label(class=" #{answer.is_right_answer ? 'label-select label-right' : 'label-gray label-unselect'}")
+              -if answer.is_right_answer
+                %input(type="radio" name="right_radio" disabled="true" checked)= answer.tag+". "+answer.answer
+              -else
+                %input(type="radio" name="right_radio" disabled="true")= answer.tag+". "+answer.answer
+  %br
+  .row
+    .col-lg-5
+      %a.btn.btn-primary(href="/homes/test_report")
+        %i.glyphicon.glyphicon-hand-left
+        返 回

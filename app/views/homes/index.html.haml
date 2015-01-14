@@ -31,8 +31,19 @@
             %span 考试时间
           %dd
             %input.exam_time_input(type="number" name="exam_time")
+            %input.hide(id="examer_id" name="examer_id")
             %span 秒
         %dl.dl-horizontal
           %dt
           %dd
-            %button.start_exam.btn.btn-success.btn-sm(type="submit" onclick="clear_my_answer_local_storage()" ) 开始考试
+            %button.start_exam.btn.btn-success.btn-sm(type="submit" onclick="start_exam()" )
+              %i.glyphicon.glyphicon-bell
+              开始考试
+
+
+:javascript
+  function start_exam(){
+    var examer_id = parseInt(Math.random()*10000000);
+    $("#examer_id").val(examer_id)
+    clear_my_answer_local_storage()
+  }

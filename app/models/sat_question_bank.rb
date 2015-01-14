@@ -2,6 +2,8 @@
 class SatQuestionBank < ActiveRecord::Base
   attr_accessible :id, :exam_date_id, :subject_id, :section, :question
 
+  validates_presence_of :exam_date_id, :subject_id, :section, :question
+
   has_many :sat_answer_banks, :foreign_key => :question_id, :dependent => :destroy
 
   def self.add_question params

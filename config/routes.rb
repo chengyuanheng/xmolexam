@@ -12,6 +12,7 @@ Xmolexam::Application.routes.draw do
     get "test_report"               => "homes#test_report"
     post "start_exam"               => "homes#start_exam"
     post "check_exam_answer"        => "homes#check_exam_answer"
+    get "question_detail"           => "homes#question_detail"
   end
 
   scope '/question_manage' do

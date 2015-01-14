@@ -43,11 +43,10 @@ function format_number(number){
 
 function update_exam_time(exam_time, second){
     if(exam_time-second == 0){
-        alert("考试时间到，您还要继续答题吗？");
+        $('#time_tip').text("考试时间到，请尽快提交考卷!").css("color","red").removeClass("hide");
         second += 1;
     }else if(exam_time-second > 0){
         $("#exam_time").text(format_exam_time(exam_time-second-1));
-        $("#hide_exam_time").val(exam_time-second-1);
         second += 1;
     }else{
         clearInterval(1);
@@ -64,29 +63,27 @@ function clear_test_report_local_storage(){
 
 function save_select_answer(question_id){
     var select_id = $("input[type='radio']:checked").val();
-    if(select_id != undefined){
-        var my_answer = JSON.parse(localStorage.getItem('my_answer')) || [];
-        var have_answer = false;
-        $(my_answer).each(function(index, el){
-            if(el["question_id"]==question_id){
-                have_answer=true;
-                el["select_id"]= select_id;
-            }
-        });
-        if(have_answer==false){
-            my_answer.push({"question_id": question_id, "select_id": select_id})
+    var my_answer = JSON.parse(localStorage.getItem('my_answer')) || [];
+    var have_answer = false;
+    $(my_answer).each(function(index, el){
+        if(el["question_id"]==question_id){
+            have_answer=true;
+            el["select_id"]= select_id;
         }
-        localStorage.setItem("my_answer",JSON.stringify(my_answer));
+    });
+    if(have_answer==false){
+        my_answer.push({"question_id": question_id, "select_id": select_id})
     }
+    localStorage.setItem("my_answer",JSON.stringify(my_answer));
 }
 
-function post_answer_to_back(){
+function post_answer_to_back(start_time){
     var my_answer = JSON.parse(localStorage.getItem('my_answer')) || [];
 
     $.ajax({
         type: "post",
         url: "/homes/check_exam_answer",
-        data: {my_answer: my_answer},
+        data: {my_answer: my_answer, start_time: start_time},
         success: storage_test_report
     });
 
@@ -97,12 +94,17 @@ function post_answer_to_back(){
     }
 }
 
-function save_test_report(reports) {
+function save_test_report(date) {
     var test_report = JSON.parse(localStorage.getItem('test_report')) || [];
-    $(reports).each(function(index, el){
+    $(date["report"]).each(function(index, el){
         test_report.push(el);
     });
     localStorage.setItem("test_report",JSON.stringify(test_report));
+
+    localStorage.removeItem("use_time");
+    var use_time = JSON.parse(localStorage.getItem('use_time')) || [];
+    use_time.push(date["use_time"])
+    localStorage.setItem("use_time",JSON.stringify(use_time));
 }
 
 function select_question(el){

@@ -1,3 +1,22 @@
+.row
+  .col-lg-4.pull-right
+    .dc
+      %dt
+        %span#right_rate
+      %dd 正确率
+    .dc
+      %dt
+        %span#unselect_count
+      %dd 未选择题数
+    .dc
+      %dt
+        %span#total_question
+      %dd 考题总数
+    .dc
+      %dt
+        %span#use_time
+      %dd 考试用时
+
 .report
   .report_title
     %table.table
@@ -16,12 +35,25 @@
 :javascript
    $(function(){
       var test_report = JSON.parse(localStorage.getItem('test_report')) || [];
+      var use_time = JSON.parse(localStorage.getItem('use_time')) || [];
+      var right_count = 0
+      var unselect_count = 0
       $("#test_report").empty();
       $(test_report).each(function(index, el){
           $("#test_report").append("<tr><td class='col-lg-1'>"+el["question_id"]+
-                                   "</td><td class='col-lg-4'>"+el["question"]+
-                                   "</td><td class='col-lg-1'>"+el["my_answer"]+
+                                   "</td><td class='col-lg-4'><a href='/homes/question_detail?question_id="+el['question_id']+"&&my_answer="+el['my_answer']+"'>"+el["question"]+
+                                   "</td></a><td class='col-lg-1'>"+el["my_answer"]+
                                    "</td><td class='col-lg-1'>"+el["right_answer"]+
                                    "</td><td class='col-lg-1'><icon class='"+( el["my_answer"]==el["right_answer"] ? 'right_icon' : 'wrong_icon')+"'></td></tr>")
+          if(el["my_answer"]==el["right_answer"]){
+            right_count += 1;
+          }
+          if(el["my_answer"] == "未选择"){
+            unselect_count += 1;
+          }
       })
+      $("#use_time").empty().text(format_exam_time(use_time));
+      $("#right_rate").empty().text(((right_count/test_report.length)*100).toFixed(2)+"%");
+      $("#total_question").empty().text(test_report.length);
+      $("#unselect_count").empty().text(unselect_count);
     });
