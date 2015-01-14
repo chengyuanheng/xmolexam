@@ -18,7 +18,8 @@
 
   %hr
   .title
-    %p= @current_exam_question.question
+    %span#question_number= @current_exam_question_index.to_s + "."
+    %span= @current_exam_question.question
   .option
     -@current_exam_question.sat_answer_banks.each do |answer|
       .radio

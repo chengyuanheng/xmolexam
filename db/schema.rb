@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20141231103919) do
   create_table "sat_answer_banks", force: true do |t|
     t.integer  "question_id"
     t.string   "tag"
-    t.string   "answer"
-    t.boolean  "is_right_answer", default: false
+    t.string   "answer",          limit: 10000
+    t.boolean  "is_right_answer",               default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20141231103919) do
     t.integer  "exam_date_id"
     t.integer  "subject_id"
     t.integer  "section"
-    t.string   "question"
+    t.string   "question",     limit: 10000
     t.datetime "created_at"
     t.datetime "updated_at"
   end

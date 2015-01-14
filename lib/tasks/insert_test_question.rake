@@ -13,13 +13,13 @@ namespace :db do
       subject_id= rand((1..2))
       section = rand((5..9))
 
-      question = SatQuestionBank.create(:exam_date_id=>exam_date_id, :subject_id=>subject_id,:section=>section,:question=>"what is "+index.to_s+" plus "+(2*index+1).to_s+" ?")
+      question = SatQuestionBank.create(:exam_date_id=>exam_date_id, :subject_id=>subject_id,:section=>section,:question=>"I have a question to ask, what is "+index.to_s+" plus "+(2*index+1).to_s+" ? can you select right answer form these choices")
       right_tag_index = rand((0..4))
       right_answer = 3*index+1
       ["A","B","C","D","E"].each do |tag|
         wrong_answer = rand((1..30000))
         wrong_answer = (wrong_answer==right_answer) ? right_answer+1 : wrong_answer
-        SatAnswerBank.create(:question_id=>question.id, :tag=>tag, :answer=>(["A","B","C","D","E"][right_tag_index]==tag) ? right_answer : wrong_answer, :is_right_answer=>(["A","B","C","D","E"][right_tag_index]==tag) ? true : false )
+        SatAnswerBank.create(:question_id=>question.id, :tag=>tag, :answer=>(["A","B","C","D","E"][right_tag_index]==tag) ? "I guess the answer is "+ right_answer.to_s : "I guess the answer is " + wrong_answer.to_s, :is_right_answer=>(["A","B","C","D","E"][right_tag_index]==tag) ? true : false )
       end
       p "----------------------#{index}_finish---------------"
     end

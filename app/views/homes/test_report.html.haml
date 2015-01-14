@@ -41,7 +41,8 @@
       $("#test_report").empty();
       $(test_report).each(function(index, el){
           $("#test_report").append("<tr><td class='col-lg-1'>"+el["question_id"]+
-                                   "</td><td class='col-lg-4'><a href='/homes/question_detail?question_id="+el['question_id']+"&&my_answer="+el['my_answer']+"'>"+el["question"]+
+                                   "</td><td class='col-lg-4'><a href='/homes/question_detail?question_id="+el['question_id']+"&&my_answer="+el['my_answer']+"' title='"+el["question"]+"'>"+
+                                   (el["question"].length < 50 ? el["question"] : el["question"].slice(0,50)+" ...")  +
                                    "</td></a><td class='col-lg-1'>"+el["my_answer"]+
                                    "</td><td class='col-lg-1'>"+el["right_answer"]+
                                    "</td><td class='col-lg-1'><icon class='"+( el["my_answer"]==el["right_answer"] ? 'right_icon' : 'wrong_icon')+"'></td></tr>")

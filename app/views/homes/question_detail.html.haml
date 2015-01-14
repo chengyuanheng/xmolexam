@@ -4,7 +4,8 @@
       %blockquote
         %h3 您的答案
       .title
-        %p= @question.question
+        %span Q:&nbsp
+        %span= @question.question
       .option
         -@question.sat_answer_banks.each do |answer|
           .radio
@@ -17,7 +18,8 @@
       %blockquote
         %h3 正确答案
       .title
-        %p= @question.question
+        %span Q:&nbsp
+        %span= @question.question
       .option
         -@question.sat_answer_banks.each do |answer|
           .radio
