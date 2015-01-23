@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
 
     if user.present?
       session[:user_id] = user.id
-      redirect_to "/question_manage/user_manage"
+      redirect_to "/question_manage/user_manage" if user.is_admin
+      redirect_to "/question_manage/question_manage" unless user.is_admin
     else
       redirect_to "/login"
     end

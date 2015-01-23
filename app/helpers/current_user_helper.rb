@@ -14,7 +14,8 @@ module CurrentUserHelper
   end
 
   def user_authenticate
-    redirect_to '/question_manage/user_manage' if current_user.present?
+    redirect_to '/question_manage/user_manage' if current_user.present? && current_user.is_admin
+    redirect_to '/question_manage/question_manage' if current_user.present? && !current_user.is_admin
   end
 
 end

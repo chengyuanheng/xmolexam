@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
+source 'http://ruby.taobao.org/'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
@@ -57,3 +58,18 @@ group :test ,:development do
   gem 'pry'
   gem 'thin'
 end
+
+gem 'capistrano', '3.0.1'
+gem 'capistrano-bundler', '1.0.0'
+gem 'capistrano-rails', '1.1.0'
+gem 'capistrano-rvm', '0.0.3'
+
+gem 'capistrano3-puma'
+
+gem 'puma', '~> 2.3.2'
+
+gem 'execjs'
+
+gem 'therubyracer'
+
+gem 'passenger'

@@ -3,7 +3,11 @@ class QuestionManageController < ApplicationController
   before_filter :no_user_authenticate
 
   def user_manage
-    @users = User.paginate(:page => params[:page], :per_page => 10)
+    if current_user.is_admin
+      @users = User.paginate(:page => params[:page], :per_page => 10)
+    else
+      @users = User.where(:is_admin=>false).paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
   def add_user

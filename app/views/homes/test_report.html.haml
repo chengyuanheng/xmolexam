@@ -53,8 +53,8 @@
             unselect_count += 1;
           }
       })
-      $("#use_time").empty().text(format_exam_time(use_time));
-      $("#right_rate").empty().text(((right_count/test_report.length)*100).toFixed(2)+"%");
+      $("#use_time").empty().text(use_time.length==0 ? 0 : format_exam_time(use_time));
+      $("#right_rate").empty().text(test_report.length==0 ? 0 : ((right_count/test_report.length)*100).toFixed(2)+"%");
       $("#total_question").empty().text(test_report.length);
       $("#unselect_count").empty().text(unselect_count);
     });

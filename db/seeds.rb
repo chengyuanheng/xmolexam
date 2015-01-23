@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-user = User.find_by(:email=>"237178842@qq.com")
-User.create(:name=>"cckkll", :email=>"237178842@qq.com", :password=>"12345678") unless user.present?
+user = User.find_by(:email=>"admin@xiaoma.com")
+User.create(:name=>"admin", :email=>"admin@xiaoma.com", :password=>"12345678", :is_admin=>true) unless user.present?
 
 lib_project = LibProject.find_by(:name=>"sat")
 unless lib_project.present?

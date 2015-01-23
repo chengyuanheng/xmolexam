@@ -22,26 +22,27 @@
           %a.btn.btn-primary.btn-sm(href="#" data-target="#update_user#{user.id}" data-toggle="modal")
             %i.glyphicon.glyphicon-pencil
             编辑
-          %a.btn.btn-danger.btn-sm(href="#" data-target="#delete_user#{user.id}" data-toggle="modal")
-            %i.glyphicon.glyphicon-trash
-            删除
+          -unless user.is_admin
+            %a.btn.btn-danger.btn-sm(href="#" data-target="#delete_user#{user.id}" data-toggle="modal")
+              %i.glyphicon.glyphicon-trash
+              删除
 
-          .modal.fade(id="delete_user#{user.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
-            .modal-dialog
-              .modal-content
-                =form_tag("/question_manage/delete_user?user_id=#{user.id}",:method=>'post') do
-                  .modal-header
-                    %button(type="button" class="close" data-dismiss="modal" aria-hidden="true") &times
-                    %h4(class="modal-title" id="myModalLabel") 删除
-                  .modal-body
-                    %h3.center 确定要删除该用户吗？
-                  .modal-footer
-                    %button.btn.btn-danger.btn-lg(type="submit")
-                      %i.glyphicon.glyphicon-trash
-                      确定
-                    %a.btn.btn-default.btn-lg(data-dismiss="modal")
-                      %i.glyphicon.glyphicon-hand-left
-                      取消
+            .modal.fade(id="delete_user#{user.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+              .modal-dialog
+                .modal-content
+                  =form_tag("/question_manage/delete_user?user_id=#{user.id}",:method=>'post') do
+                    .modal-header
+                      %button(type="button" class="close" data-dismiss="modal" aria-hidden="true") &times
+                      %h4(class="modal-title" id="myModalLabel") 删除
+                    .modal-body
+                      %h3.center 确定要删除该用户吗？
+                    .modal-footer
+                      %button.btn.btn-danger.btn-lg(type="submit")
+                        %i.glyphicon.glyphicon-trash
+                        确定
+                      %a.btn.btn-default.btn-lg(data-dismiss="modal")
+                        %i.glyphicon.glyphicon-hand-left
+                        取消
 
           .modal.fade(id="update_user#{user.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
             .modal-dialog
